@@ -2,6 +2,9 @@ package org.example.training.day1;
 
 import java.util.Scanner;
 
+/**
+ * 대소문자 바꿔서 출력하기
+ */
 public class Ex4 {
     public static String changeCase(String str) {   // 나의 풀이
         char[] chars = new char[str.length()];
