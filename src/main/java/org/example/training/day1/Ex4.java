@@ -1,6 +1,7 @@
 package org.example.training.day1;
 
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * 대소문자 바꿔서 출력하기
@@ -39,19 +40,21 @@ public class Ex4 {
 
         for (char c : str.toCharArray()) {
             if(c >= 'A' && c <= 'Z') {
-                sb.append((char) (c + 32));
+                sb.append((char) (c + ('a' - 'A')));
             } else if (c >= 'a' && c <= 'z') {
-                sb.append((char) (c - 32));
+                sb.append((char) (c - ('a' - 'A')));
             }
         }
 
         return sb.toString();
     }
 
-    public static void changeCase4(String str) {    // stream을 이용한 풀이
-        str.chars()
+    public static String changeCase4(String str) {    // stream을 이용한 풀이
+        return str.chars()
                 .mapToObj(c -> (char) c)
-                .map(c -> Character.isLowerCase(c) ? Character.toUpperCase(c) : Character.toLowerCase(c)).forEach(System.out::print);
+                .map(c -> Character.isLowerCase(c) ? Character.toUpperCase(c) : Character.toLowerCase(c))
+                .map(String::valueOf)
+                .collect(Collectors.joining());
     }
 
     public static String changeCase5(String str) {  // 정규식을 이용한 풀이
@@ -73,7 +76,6 @@ public class Ex4 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String a = sc.next();
-        System.out.println(changeCase5(a));
-//        changeCase4(a);
+        System.out.println(changeCase4(a));
     }
 }
